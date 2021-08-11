@@ -27,7 +27,7 @@
                 class="rounded float-start" widht="180px" height="180px" alt="...">
             <img src="https://img.freepik.com/vector-gratis/ninja-lindo-dibujos-animados-shuriken-estilo-dibujos-animados-plana_138676-2761.jpg?size=338&ext=jpg"
                 class="rounded float-end" widht="180px" height="180px" alt="...">
-            <h3 class="border rounded">Your gold: {{request.session.contador}}</h3>
+            <h3 class="border rounded">Your gold: {{request.session.gold}}</h3>
         </div>
         <div class="container">
             <div class="row text-center p-5">
@@ -81,14 +81,13 @@
             <form action='/reset' method='POST'>
                 {% csrf_token %}
                 <div class="d-grid gap-2 col-6 mx-auto">
-                    <button class="btn btn-secondary btn-default ribbon" type="submit">Reset</button>
-                    {{reset.session.contador}}
+                    <input type="submit" value="Reset" class="btn btn-secondary btn-default ribbon">
                 </div>
             </form>
 
             <div id="activities">
                 {%for activity in request.session.activities %}
-                <p class= "{% if activity.request.session.gold >= 0%}azul {% else %}rojo{% endif %}">{{ activity.text}}</p>
+                <p class= "{% if activity.gold >= 0%}azul {% else %}rojo{% endif %}">Has generado {{activity.gold}} en {{activity.place}}</p>
                 {% endfor %}
             </div>
         </div>

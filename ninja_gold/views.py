@@ -19,20 +19,36 @@ def process_money(request):
 
     if request.POST['place'] == 'farm':
         gold = random.randint(10, 20)
+        request.session['activities'].append({
+            "gold": gold,
+            "place": "granja"
+        })
     
     if request.POST['place'] == 'cave':
         gold = random.randint(5, 10)
+        request.session['activities'].append({
+            "gold": gold,
+            "place": "caverna"
+        })
     
     if request.POST['place'] == 'house':
         gold = random.randint(2, 5)
+        request.session['activities'].append({
+            "gold": gold,
+            "place": "casa"
+        })
     
     if request.POST['place'] == 'casino':
         gold = random.randint(0, 50)
+        request.session['activities'].append({
+            "gold": gold,
+            "place": "casino"
+        })
 
-    if 'contador' in request.session:
-        request.session['contador'] = request.session['contador'] + gold
+    if 'gold' in request.session:
+        request.session['gold'] = request.session['gold'] + gold
     else:
-        request.session['contador'] = gold
+        request.session['gold'] = gold
 
     if not ('log' in request.session):
         request.session['log'] = []
